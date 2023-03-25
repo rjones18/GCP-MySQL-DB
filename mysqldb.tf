@@ -21,7 +21,7 @@ resource "google_sql_database" "example-database" {
 }
 
 resource "google_service_account" "example_service_account" {
-  account_id   = "example-service-account"
+  account_id   = "wordpress-service-account"
   display_name = "Example Service Account"
 }
 
