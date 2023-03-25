@@ -21,12 +21,13 @@ resource "google_sql_database" "example-database" {
 }
 
 resource "google_service_account" "example_service_account" {
-  account_id   = "wordpressserviceaccount"
-  display_name = "Wordpress MySQL Service Account"
+  account_id   = "example-service-account"
+  display_name = "Example Service Account"
 }
 
+
 resource "google_project_iam_binding" "example_binding" {
-  project = "alert-flames-28651"
+  project = "alert-flames-286515"
   role    = "roles/cloudsql.client"
 
   members = [
