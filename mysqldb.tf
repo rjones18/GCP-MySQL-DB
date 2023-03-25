@@ -16,13 +16,10 @@ resource "google_sql_database_instance" "example-instance" {
   settings {
     tier = "db-f1-micro"
     
-    # ip_configuration {
-    #   ipv4_enabled    = true
-    #   authorized_networks {
-    #     name  = "project-vpc"
-    #     value = data.google_compute_subnetwork.subnet.name
-    #   }
-    # }
+    ip_configuration {
+      ipv4_enabled    = false
+      private_network = "projects/alert-flames-286515/global/networks/project-vpc"
+    }
   }
 }
 
