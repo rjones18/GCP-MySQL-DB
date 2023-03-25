@@ -1,12 +1,3 @@
-# data "google_compute_network" "vpc_network" {
-#   name = "project-vpc"
-# }
-
-# data "google_compute_subnetwork" "subnet" {
-#   name = "app-subnet-1"
-#   region = "us-central1"
-# }
-
 resource "google_sql_database_instance" "example-instance" {
   name             = "wordprss-instance"
   database_version = "MYSQL_5_7"
@@ -27,4 +18,18 @@ resource "google_sql_database_instance" "example-instance" {
 resource "google_sql_database" "example-database" {
   name     = "wordpress"
   instance = google_sql_database_instance.example-instance.name
+}
+
+resource "google_service_account" "example_service_account" {
+  account_id   = "wordpressserviceaccount"
+  display_name = "Wordpress MySQL Service Account"
+}
+
+resource "google_project_iam_binding" "example_binding" {
+  project = "alert-flames-28651"
+  role    = "roles/cloudsql.client"
+
+  members = [
+    "serviceAccount:${google_service_account.example_service_account.email}"
+  ]
 }
