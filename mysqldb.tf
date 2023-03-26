@@ -1,14 +1,14 @@
 data "google_secret_manager_secret_version" "my_user_secret" {
   provider = google-beta
   secret   = "wordpress-username"
-  version  = "latest"
+  version  = "1"
   project  = "alert-flames-286515"
 }
 
 data "google_secret_manager_secret_version" "my_db_secret" {
   provider = google-beta
   secret   = "wordpress-db-password"
-  version  = "latest"
+  version  = "1"
   project  = "alert-flames-286515"
 }
 
