@@ -18,7 +18,7 @@ resource "google_sql_database" "example-database" {
 }
 
 resource "google_sql_database_instance" "example-instance" {
-  name                = "wordpress-instance"
+  name                = "wordpress-sql-instance"
   database_version    = "MYSQL_5_7"
   region              = "us-central1"
   deletion_protection = false
@@ -36,9 +36,9 @@ resource "google_sql_database_instance" "example-instance" {
 
 
 resource "google_sql_user" "users" {
-  name     = data.google_secret_manager_secret_version.my_user_secret.secret
+  name     = data.google_secret_manager_secret_version.my_user_secret.secret_data
   instance = google_sql_database_instance.example-instance.name
-  password = data.google_secret_manager_secret_version.my_db_secret.secret
+  password = data.google_secret_manager_secret_version.my_db_secret.secret_data
   host = "10.0.2.0/23"
 }
 
