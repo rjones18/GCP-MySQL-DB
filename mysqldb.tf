@@ -34,7 +34,7 @@ resource "google_sql_database_instance" "example-instance" {
 }
 
 
-resource "google_sql_user" "root" {
+resource "google_sql_user" "user" {
   name     = data.google_secret_manager_secret_version.my_user_secret.secret_data
   instance = google_sql_database_instance.example-instance.name
   password = data.google_secret_manager_secret_version.my_db_secret.secret_data
