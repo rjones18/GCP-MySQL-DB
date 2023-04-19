@@ -1,7 +1,7 @@
 data "google_secret_manager_secret_version" "my_user_secret" {
   provider = google-beta
   secret   = "wordpress-username"
-  version  = "1"
+  version  = "2"
   project  = "alert-flames-286515"
 }
 
@@ -34,11 +34,10 @@ resource "google_sql_database_instance" "example-instance" {
 }
 
 
-
-resource "google_sql_user" "users" {
+resource "google_sql_user" "root" {
   name     = data.google_secret_manager_secret_version.my_user_secret.secret_data
   instance = google_sql_database_instance.example-instance.name
   password = data.google_secret_manager_secret_version.my_db_secret.secret_data
-  host = "10.0.2.0/23"
+  host     = "%"
 }
 
